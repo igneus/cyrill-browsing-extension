@@ -34,18 +34,16 @@ var up = function () {
     "http://cyril.psalterium.cz/?a=3&ListRocnik=" + extractYear();
 };
 
-document.addEventListener('keydown', (event) => {
-  const keyName = event.key;
+if (onPagePreview()) {
+  document.addEventListener('keydown', (event) => {
+    const keyName = event.key;
 
-  if (!onPagePreview()) {
-    return;
-  }
-
-  if (keyName === 'ArrowLeft') {
-    previous();
-  } else if (keyName === 'ArrowRight') {
-    next();
-  } else if (keyName === 'ArrowUp') {
-    up();
-  }
-}, false);
+    if (keyName === 'ArrowLeft') {
+      previous();
+    } else if (keyName === 'ArrowRight') {
+      next();
+    } else if (keyName === 'ArrowUp') {
+      up();
+    }
+  }, false);
+}
