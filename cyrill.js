@@ -42,7 +42,7 @@ if (onPagePreview()) {
       previous();
     } else if (keyName === 'ArrowRight') {
       next();
-    } else if (keyName === 'ArrowUp') {
+    } else if (keyName === 'ArrowUp' && event.ctrlKey) {
       up();
     }
   }, false);
