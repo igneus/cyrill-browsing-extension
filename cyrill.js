@@ -35,6 +35,9 @@ var up = function () {
 };
 
 if (onPagePreview()) {
+  // unrelated hack: center content in the window
+  document.querySelector('table').style.margin = '0px auto 0px auto';
+
   document.addEventListener('keydown', (event) => {
     const keyName = event.key;
 
