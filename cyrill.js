@@ -11,12 +11,16 @@ var findLinkByText = function (text) {
     .iterateNext();
 };
 
-// finds year the current page belongs to
-var extractYear = function () {
+var extractPosition = function () {
   return document
     .querySelector('table tr:nth-child(2) td p')
     .innerHTML
-    .match(/Ročník: (\d{4});/)[1];
+    .match(/Ročník: (\d{4}); strana: (\d+)/);
+};
+
+// finds year the current page belongs to
+var extractYear = function () {
+  return extractPosition()[1];
 };
 
 var previous = function () {
@@ -34,6 +38,15 @@ var up = function () {
     "http://cyril.psalterium.cz/?a=3&ListRocnik=" + extractYear();
 };
 
+var createStatusBar = function () {
+  document.body.insertAdjacentHTML(
+    'beforeend',
+    '<div style="position: fixed; left: 0; bottom: 0; color: white; margin: 5px;">' +
+      extractPosition()[0] +
+      '</div>'
+  );
+};
+
 if (onPagePreview()) {
   // unrelated hack: center content in the window
   document.querySelector('table').style.margin = '0px auto 0px auto';
@@ -49,4 +62,6 @@ if (onPagePreview()) {
       up();
     }
   }, false);
+
+  createStatusBar();
 }
