@@ -8,7 +8,10 @@
 
   "content_scripts": [
     {
-      "matches": ["*://cyril.psalterium.cz/*"],
+      "matches": [
+        "*://cyril.psalterium.cz/*",
+        "*://cyril.sdh.cz/*"
+      ],
       "js": ["cyrill.js"]
     }
   ]
